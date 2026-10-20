@@ -70,7 +70,7 @@ public class Tool extends Equippable {
     public int requiredNumberOfValues()
     {
         // What is the correct return value?
-        return -1;
+        return 6;
     }
 
     @Override
@@ -78,7 +78,11 @@ public class Tool extends Equippable {
     {
         this.setName(tokens[0]);
 
-        // Complete this method.
+        this.setMaterial(tokens[1]);
+        this.setDurability(Integer.parseInt(tokens[2]));
+        this.setSpeed(Integer.parseInt(tokens[3]));
+        this.setModifier(tokens[4]);
+        this.setModifierLevel(Integer.parseInt(tokens[5]));
 
     }
 
@@ -117,7 +121,11 @@ public class Tool extends Equippable {
         Tool rhsItem = (Tool) rhs;
 
         // Replace the return
-        return false;
+        return this.getName().equals(rhsItem.getName())&&
+            this.getSpeed() == (rhsItem.getSpeed())&&
+            this.getMaterial().equals(rhsItem.getMaterial())&&
+            this.getModifier().equals(rhsItem.getModifier())&&
+            this.getModifierLevel() == (rhsItem.getModifierLevel());
     }
 
     /**
@@ -128,7 +136,7 @@ public class Tool extends Equippable {
     public int hashCode()
     {
         // Replace the return
-        return -1;
+        return this.getName().hashCode() + this.getSpeed() + this.getMaterial().hashCode() + this.getModifier().hashCode() + this.getModifierLevel();
     }
 
     /**
@@ -138,6 +146,6 @@ public class Tool extends Equippable {
     public String toString()
     {
         // Use String.format and the provided FMT_STR
-        return "  Not Implemented";
+        return String.format(FMT_STR, this.getName() , this.getDurability() , this.getSpeed() , this.getMaterial() , this.getModifier() , this.getModifierLevel());
     }
 }
